@@ -8,7 +8,7 @@ import { Footer } from "@/components/Footer";
 import { RevealObserver } from "@/components/Reveal";
 
 // next/font descarcă fonturile la build și le servește de pe același domeniu.
-const inter = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-inter", display: "swap" });
+const inter = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-inter", display: "swap", preload: false });
 const barlow = Barlow_Condensed({ subsets: ["latin", "latin-ext"], weight: ["600", "700"], variable: "--font-barlow", display: "swap" });
 
 const title = "Service auto Tecuci — diagnoză, reparații, ITP | MotorPro (demo)";

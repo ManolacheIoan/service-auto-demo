@@ -9,9 +9,10 @@ export function Gallery({ items }: { items: { k: StockKey; span?: string }[] }) 
   const ref = useRef<HTMLDialogElement>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
   const [i, setI] = useState(0);
+  const [shown, setShown] = useState(false);
   const n = items.length;
   const go = (dx: number) => setI((x) => (x + dx + n) % n);
-  const open = (x: number, el: HTMLButtonElement) => { opener.current = el; setI(x); ref.current?.showModal(); };
+  const open = (x: number, el: HTMLButtonElement) => { opener.current = el; setI(x); setShown(true); ref.current?.showModal(); };
 
   useEffect(() => {
     const dlg = ref.current;
@@ -48,7 +49,7 @@ export function Gallery({ items }: { items: { k: StockKey; span?: string }[] }) 
         className="m-auto max-h-[92vh] w-[min(94vw,76rem)] overflow-visible bg-transparent p-0">
         <figure className="relative">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={src(cur, 1920)} alt={stock[cur].alt} decoding="async" className="max-h-[80vh] w-full rounded-lg object-contain" />
+          {shown && <img src={src(cur, 1920)} alt={stock[cur].alt} decoding="async" className="max-h-[80vh] w-full rounded-lg object-contain" />}
           <figcaption className="mt-3 flex items-center justify-between gap-4 text-sm text-white/85">
             <span>{stock[cur].alt} · <span className="tbd">foto stock, exemplu</span></span>
             <span aria-live="polite" className="shrink-0">{i + 1} / {n}</span>
